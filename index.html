@@ -1,27 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Hello there</h1>
-    <div id="app">
-        {{ message}}
+    <title>Sample TV Show Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #222;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
 
+        h1 {
+            color: #ff6347;
+            font-size: 3em;
+        }
+
+        p {
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #444;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1 v-for="title in items"  >{{title.showName}}- {{title.time}}</h1>
+        <h1>Counter</h1>
+        <p>{{count}}</p>
+        <button v-on:click="incrementCount">Click me</button>
+        <button v-on:click="deceremenCount">Reducer</button>
     </div>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script>
-        const {createApp}=Vue
-        const app=createApp({
-            data(){
+        const { createApp } = Vue
+        const app = createApp({
+            data() {
                 return {
-                    message:"Hello it works"
+                    items: [
+                        { id: 1, showName: 'Breaking Bad', time: '8:00 PM' },
+                        { id: 2, showName: 'Game of Thrones', time: '9:00 PM' },
+                        { id: 3, showName: 'Stranger Things', time: '10:00 PM' },
+                        { id: 4, showName: 'The Mandalorian', time: '7:00 PM' },
+                        { id: 5, showName: 'The Office', time: '6:00 PM' }
+                    ],
+                    count:10
+                }
+            },
+            methods:{
+                incrementCount(){
+                    this.count++;
+                },
+                deceremenCount(){
+                    this.count--;
                 }
             }
         })
-        app.mount('#app')
+        app.mount("#app")
     </script>
 </body>
+
 </html>
